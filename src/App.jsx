@@ -15,7 +15,7 @@ import Laboratory from './pages/Laboratory';
  */
 function App() {
   return (
-    <Router basename="/landing-page">
+    <Router basename="/">
       <AppContent />
     </Router>
   );
