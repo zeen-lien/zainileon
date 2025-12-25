@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@theme {
+  --color-latar-utama: #000000;
+  --color-latar-sekunder: #0a0a0a;
+  --color-latar-tersier: #1a1a1a;
+  
+  --color-teks-utama: #ffffff;
+  --color-teks-sekunder: #a0a0a0;
+  --color-teks-aksen: #00d4ff;
+  
+  --color-aksen-primer: #00d4ff;
+  --color-aksen-sekunder: #a855f7;
+  --color-aksen-tersier: #7dd3c0;
+  --color-aksen-bahaya: #dc2626;
+  --color-aksen-sukses: #10b981;
+  
+  --font-family-utama: 'Inter', sans-serif;
+  --font-family-judul: 'Space Grotesk', sans-serif;
+  
+  --animate-fade-in: fadeIn 0.6s ease-out;
+  --animate-slide-up: slideUp 0.8s ease-out;
+  --animate-glow: glow 2s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3), 0 0 40px rgba(168, 85, 247, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.6), 0 0 60px rgba(168, 85, 247, 0.4); }
+}
+
+body {
+  background-color: var(--color-latar-utama);
+  color: var(--color-teks-utama);
+  font-family: var(--font-family-utama);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-judul);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, var(--color-aksen-primer), var(--color-aksen-sekunder));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glow-effect {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3), 0 0 40px rgba(168, 85, 247, 0.2);
+}
+
+.glow-effect-strong {
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.6), 0 0 60px rgba(168, 85, 247, 0.4);
+}
+
+/* SweetAlert2 Custom Styles - Neon Cyan Theme */
+.swal-laboratory-popup {
+  border: 2px solid rgba(0, 212, 255, 0.3) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3) !important;
+}
+
+.swal-laboratory-title {
+  font-family: 'Space Grotesk', sans-serif !important;
+  color: #00d4ff !important;
+  font-weight: 700 !important;
+}
+
+.swal-laboratory-content {
+  color: #a0a0a0 !important;
+  font-size: 0.95rem !important;
+}
+
+.swal-laboratory-confirm {
+  background: #00d4ff !important;
+  color: #000000 !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem 2rem !important;
+  font-weight: 600 !important;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.5) !important;
+  transition: all 0.3s ease !important;
+}
+
+.swal-laboratory-confirm:hover {
+  background: #00b8e6 !important;
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.7) !important;
+  transform: translateY(-2px) !important;
+}
+
+.swal-laboratory-cancel {
+  background: transparent !important;
+  color: #ef4444 !important;
+  border: 2px solid rgba(239, 68, 68, 0.3) !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem 2rem !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.swal-laboratory-cancel:hover {
+  border-color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+}
+
+.swal-laboratory-input {
+  background: #0a0a0a !important;
+  border: 2px solid rgba(0, 212, 255, 0.3) !important;
+  border-radius: 0.5rem !important;
+  color: #ffffff !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 1rem !important;
+}
+
+.swal-laboratory-input:focus {
+  border-color: #00d4ff !important;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3) !important;
+  outline: none !important;
+}
+
+.swal2-icon.swal2-success .swal2-success-ring {
+  border-color: rgba(0, 212, 255, 0.3) !important;
+}
+
+.swal2-icon.swal2-success [class^='swal2-success-line'] {
+  background-color: #00d4ff !important;
+}
+
+.swal2-timer-progress-bar {
+  background: linear-gradient(to right, #00d4ff, #a855f7) !important;
+}
+
+/* Toast Styles */
+.swal-toast-popup {
+  border: 2px solid rgba(0, 212, 255, 0.3) !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3) !important;
+}
+
+/* Loading Spinner Color */
+.swal2-loader {
+  border-color: #00d4ff transparent #00d4ff transparent !important;
+}
