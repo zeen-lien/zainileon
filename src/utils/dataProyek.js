@@ -94,7 +94,7 @@ export const DAFTAR_PROYEK = [
     namaProyek: 'Love',
     deskripsi: 'Personal project dengan tema creative dan experimental',
     deskripsiPanjang: 'Experimental project untuk explore creative coding dan interactive design.',
-    linkDemo: 'https://zeen-lien.github.io/love/',
+    linkDemo: 'https://love-sage-nu.vercel.app/',
     linkGithub: 'https://github.com/zeen-lien/love',
     teknologi: ['JavaScript', 'Creative Coding', 'Animation'],
     kategori: 'experimental',
