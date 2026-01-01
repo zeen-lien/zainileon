@@ -68,16 +68,32 @@ export default function SeksiKontak() {
     <section 
       id="kontak"
       ref={ref}
-      className="min-h-screen flex items-center py-20 bg-latar-sekunder"
+      data-section="contact"
+      className="min-h-screen flex items-center py-20 bg-latar-utama relative overflow-hidden"
     >
-      <div className="container mx-auto px-6">
+      {/* Animated Particles Background */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-0 left-0 w-full h-full" 
+             style={{ 
+               background: 'radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%)',
+             }} />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           variants={varianTitle}
           initial="tersembunyi"
           animate={adalahTerlihat ? "terlihat" : "tersembunyi"}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-judul font-bold text-gradient mb-4">
+          <h2 className="text-4xl md:text-5xl font-judul font-bold mb-4"
+              style={{ 
+                background: 'linear-gradient(135deg, #00d4ff 0%, #a855f7 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textShadow: '0 0 30px rgba(0, 212, 255, 0.3)'
+              }}>
             Let's Connect
           </h2>
           <p className="text-teks-sekunder text-lg max-w-2xl mx-auto">

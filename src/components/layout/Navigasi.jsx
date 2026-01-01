@@ -101,7 +101,7 @@ export default function Navigasi() {
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
-          {/* Logo / Brand */}
+          {/* Logo / Brand - No Border */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="cursor-pointer flex items-center gap-2"
@@ -111,6 +111,7 @@ export default function Navigasi() {
               src={`${import.meta.env.BASE_URL}logo.png`}
               alt="Zeen-Lien Laboratory Logo" 
               className="h-12 w-auto object-contain"
+              style={{ outline: 'none', border: 'none' }}
               onError={(e) => {
                 console.error('Logo failed to load');
                 e.target.style.display = 'none';
@@ -118,13 +119,14 @@ export default function Navigasi() {
             />
           </motion.div>
 
-          {/* Desktop Menu */}
+          {/* Desktop Menu - No Border */}
           {!adalahMobile && (
             <div className="flex items-center gap-8">
               {MENU_NAVIGASI.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleMenuClick(item)}
+                  style={{ outline: 'none' }}
                   className={`
                     font-judul font-medium transition-colors duration-300
                     hover:text-aksen-primer

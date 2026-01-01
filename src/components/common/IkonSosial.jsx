@@ -1,40 +1,76 @@
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { useState, useRef } from 'react';
 
 /**
- * Komponen IkonSosial untuk menampilkan icon social media dengan hover effect
- * 
- * @param {object} props - Props komponen
- * @param {string} props.platform - Nama platform social media
- * @param {string} props.username - Username atau display name
- * @param {string} props.link - URL link ke profile
- * @param {string} props.warna - Warna accent untuk hover effect
+ * Komponen IkonSosial - Ultra Modern 3D Card dengan Holographic Effects
+ * Premium design dengan particle effects dan neon glow
  */
-export default function IkonSosial({ platform, username, link, warna }) {
-  /**
-   * Fungsi untuk membuka link social media di tab baru
-   */
+export default function IkonSosial({ platform, username, link }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const cardRef = useRef(null);
+  
+  // Mouse position untuk 3D tilt effect
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  const rotateX = useTransform(mouseY, [-100, 100], [15, -15]);
+  const rotateY = useTransform(mouseX, [-100, 100], [-15, 15]);
+
   const bukaLink = () => {
     window.open(link, '_blank', 'noopener,noreferrer');
   };
 
-  // Varian animasi hover
-  const varianHover = {
-    scale: 1.1,
-    rotate: 5,
-    transition: { duration: 0.3, ease: 'easeInOut' }
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    mouseX.set(e.clientX - centerX);
+    mouseY.set(e.clientY - centerY);
   };
 
-  // Varian animasi tap
-  const varianTap = {
-    scale: 0.95
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+    setIsHovered(false);
   };
 
-  /**
-   * Fungsi untuk render icon berdasarkan platform
-   * Menggunakan SVG icons untuk setiap platform
-   */
+  // Platform colors dengan neon glow
+  const platformColors = {
+    'Instagram': { 
+      primary: '#E4405F', 
+      secondary: '#C13584',
+      gradient: 'linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%)',
+      glow: 'rgba(228, 64, 95, 0.6)',
+      particles: '#FCAF45'
+    },
+    'Telegram': { 
+      primary: '#0088cc', 
+      secondary: '#229ED9',
+      gradient: 'linear-gradient(135deg, #0088cc 0%, #229ED9 100%)',
+      glow: 'rgba(0, 136, 204, 0.6)',
+      particles: '#229ED9'
+    },
+    'GitHub': { 
+      primary: '#ffffff', 
+      secondary: '#c9d1d9',
+      gradient: 'linear-gradient(135deg, #ffffff 0%, #8b949e 100%)',
+      glow: 'rgba(255, 255, 255, 0.6)',
+      particles: '#ffffff'
+    },
+    'WhatsApp': { 
+      primary: '#25D366', 
+      secondary: '#128C7E',
+      gradient: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+      glow: 'rgba(37, 211, 102, 0.6)',
+      particles: '#25D366'
+    }
+  };
+
+  const colors = platformColors[platform] || platformColors['Instagram'];
+
   const renderIcon = () => {
-    const iconClass = "w-6 h-6";
+    const iconClass = "w-7 h-7";
     
     switch (platform) {
       case 'Instagram':
@@ -68,29 +104,274 @@ export default function IkonSosial({ platform, username, link, warna }) {
 
   return (
     <motion.div
+      ref={cardRef}
       onClick={bukaLink}
-      whileHover={varianHover}
-      whileTap={varianTap}
-      className="flex flex-col items-center gap-2 cursor-pointer group"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      className="relative cursor-pointer perspective-1000 no-outline"
+      style={{
+        perspective: '1000px',
+        outline: 'none',
+      }}
+      whileTap={{ scale: 0.95 }}
     >
-      {/* Icon Container */}
-      <div 
-        className="
-          w-14 h-14 rounded-full 
-          bg-transparent border-2 border-latar-tersier
-          flex items-center justify-center
-          text-teks-sekunder
-          group-hover:border-aksen-primer group-hover:text-aksen-primer
-          transition-all duration-300
-        "
-      >
-        {renderIcon()}
-      </div>
+      {/* Outer Glow - Subtle Effect */}
+      <motion.div
+        className="absolute -inset-8 rounded-[3rem] blur-3xl opacity-0"
+        style={{
+          background: colors.gradient,
+        }}
+        animate={{
+          opacity: isHovered ? 0.2 : 0,
+          scale: isHovered ? 1.1 : 1,
+        }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      />
 
-      {/* Username */}
-      <span className="text-xs text-teks-sekunder group-hover:text-aksen-primer transition-colors">
-        {username}
-      </span>
+      {/* 3D Card Container - Clean & Simple */}
+      <motion.div
+        className="relative w-36 h-48 rounded-3xl overflow-hidden"
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: 'preserve-3d',
+          background: 'rgba(0, 0, 0, 0.3)',
+          backdropFilter: 'blur(20px)',
+          border: '2px solid rgba(255, 255, 255, 0.5)',
+          outline: 'none',
+        }}
+        animate={{
+          borderColor: isHovered ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 255, 255, 0.5)',
+          boxShadow: isHovered 
+            ? `0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px ${colors.glow}` 
+            : '0 10px 30px rgba(0, 0, 0, 0.3)',
+        }}
+        transition={{ duration: 0.4 }}
+      >
+
+        {/* Gradient Mesh Overlay */}
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            background: colors.gradient,
+            mixBlendMode: 'overlay',
+            opacity: 0,
+          }}
+          animate={{
+            opacity: isHovered ? 0.3 : 0,
+          }}
+          transition={{ duration: 0.5 }}
+        />
+
+        {/* Animated Scan Lines */}
+        <motion.div
+          className="absolute inset-0 opacity-0"
+          style={{
+            background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)',
+          }}
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            y: isHovered ? [0, 20, 0] : 0,
+          }}
+          transition={{
+            opacity: { duration: 0.3 },
+            y: { duration: 2, repeat: Infinity, ease: 'linear' }
+          }}
+        />
+
+        {/* Content Container */}
+        <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 py-8 gap-6">
+          {/* Icon Container dengan Depth */}
+          <motion.div
+            className="relative"
+            style={{
+              transformStyle: 'preserve-3d',
+            }}
+            animate={{
+              z: isHovered ? 50 : 0,
+            }}
+            transition={{ duration: 0.4 }}
+          >
+            {/* Icon Glow Background - Subtle */}
+            <motion.div
+              className="absolute inset-0 rounded-3xl blur-2xl"
+              style={{
+                background: colors.gradient,
+              }}
+              animate={{
+                opacity: isHovered ? 0.3 : 0,
+                scale: isHovered ? 1.3 : 1,
+              }}
+              transition={{ duration: 0.5 }}
+            />
+
+            {/* Icon Circle - Outline Only */}
+            <motion.div
+              className="relative w-16 h-16 rounded-2xl flex items-center justify-center"
+              style={{
+                background: 'transparent',
+                border: '2px solid rgba(255, 255, 255, 0.5)',
+                outline: 'none',
+              }}
+              animate={{
+                borderColor: isHovered ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 255, 255, 0.5)',
+                boxShadow: isHovered ? `0 0 15px ${colors.glow}` : 'none',
+                rotate: isHovered ? [0, -10, 10, -10, 0] : 0,
+                scale: isHovered ? 1.1 : 1,
+              }}
+              transition={{ 
+                borderColor: { duration: 0.4 },
+                boxShadow: { duration: 0.4 },
+                rotate: { duration: 0.8, ease: 'easeInOut' },
+                scale: { duration: 0.3 }
+              }}
+            >
+              <motion.div
+                animate={{
+                  color: isHovered ? colors.primary : '#a0a0a0',
+                  scale: isHovered ? 1.15 : 1,
+                  filter: isHovered ? `drop-shadow(0 0 8px ${colors.glow})` : 'none',
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                {renderIcon()}
+              </motion.div>
+            </motion.div>
+
+            {/* Orbiting Particles */}
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 rounded-full"
+                style={{
+                  background: colors.particles,
+                  boxShadow: `0 0 10px ${colors.glow}`,
+                  top: '50%',
+                  left: '50%',
+                }}
+                animate={isHovered ? {
+                  x: [0, Math.cos((i * 120 * Math.PI) / 180) * 50],
+                  y: [0, Math.sin((i * 120 * Math.PI) / 180) * 50],
+                  opacity: [0, 1, 0],
+                  scale: [0, 1, 0],
+                } : {
+                  x: 0,
+                  y: 0,
+                  opacity: 0,
+                  scale: 0,
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: isHovered ? Infinity : 0,
+                  delay: i * 0.2,
+                  ease: 'easeOut',
+                }}
+              />
+            ))}
+          </motion.div>
+
+          {/* Platform Info */}
+          <motion.div 
+            className="text-center space-y-2"
+            style={{
+              transformStyle: 'preserve-3d',
+            }}
+            animate={{
+              z: isHovered ? 30 : 0,
+            }}
+            transition={{ duration: 0.4 }}
+          >
+            {/* Platform Name dengan Neon - Subtle */}
+            <motion.h3
+              className="text-base font-bold tracking-wide"
+              animate={{
+                color: isHovered ? colors.primary : '#ffffff',
+                textShadow: isHovered ? `0 0 10px ${colors.glow}` : 'none',
+                scale: isHovered ? 1.05 : 1,
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              {platform}
+            </motion.h3>
+            
+            {/* Username dengan Glitch Effect */}
+            <motion.p
+              className="text-xs font-mono"
+              animate={{
+                color: isHovered ? colors.secondary : '#a0a0a0',
+                opacity: isHovered ? 1 : 0.7,
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              {username}
+            </motion.p>
+          </motion.div>
+
+          {/* Connect Button - Slide Up */}
+          <motion.div
+            className="absolute bottom-6 left-6 right-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{
+              opacity: isHovered ? 1 : 0,
+              y: isHovered ? 0 : 20,
+            }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          >
+            <motion.div
+              className="relative w-full py-2 rounded-xl text-xs font-bold text-center overflow-hidden"
+              style={{
+                background: colors.gradient,
+                color: '#ffffff',
+                boxShadow: `0 5px 15px ${colors.glow}`,
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {/* Button Shine Effect */}
+              <motion.div
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+                }}
+                animate={{
+                  x: ['-100%', '200%'],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: 'linear',
+                }}
+              />
+              <span className="relative z-10">Connect</span>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Corner Accents */}
+        {[
+          { top: '1rem', left: '1rem', rotate: 0 },
+          { top: '1rem', right: '1rem', rotate: 90 },
+          { bottom: '1rem', left: '1rem', rotate: -90 },
+          { bottom: '1rem', right: '1rem', rotate: 180 },
+        ].map((pos, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-4 h-4"
+            style={{
+              ...pos,
+              borderTop: `2px solid ${colors.primary}`,
+              borderLeft: `2px solid ${colors.primary}`,
+              transform: `rotate(${pos.rotate}deg)`,
+              opacity: 0,
+            }}
+            animate={{
+              opacity: isHovered ? 0.6 : 0,
+            }}
+            transition={{ duration: 0.3, delay: i * 0.05 }}
+          />
+        ))}
+      </motion.div>
     </motion.div>
   );
 }
