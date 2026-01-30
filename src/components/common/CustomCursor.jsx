@@ -70,19 +70,19 @@ function CustomCursor() {
 
   return (
     <div className="hidden md:block pointer-events-none fixed inset-0 z-[9999]">
-      {/* Particle Trail */}
+      {/* Particle Trail - Smaller */}
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
-          initial={{ opacity: 0.8, scale: 1 }}
+          initial={{ opacity: 0.6, scale: 1 }}
           animate={{ opacity: 0, scale: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute w-1.5 h-1.5 rounded-full"
+          className="absolute w-1 h-1 rounded-full"
           style={{
             left: particle.x,
             top: particle.y,
-            backgroundColor: '#ff00eaff',
-            boxShadow: '0 0 12px rgba(0, 255, 255, 1), 0 0 24px rgba(0, 255, 255, 0.6)',
+            backgroundColor: '#00FFFF',
+            boxShadow: '0 0 6px rgba(0, 255, 255, 0.8)',
           }}
         />
       ))}
@@ -95,115 +95,115 @@ function CustomCursor() {
         }}
         className="absolute top-0 left-0"
       >
-        {/* Center Dot */}
+        {/* Center Dot - Smaller */}
         <motion.div
           animate={{
-            scale: isClicking ? 0.5 : isHovering ? 1.5 : 1,
+            scale: isClicking ? 0.5 : isHovering ? 1.3 : 1,
             rotate: isHovering ? 45 : 0,
           }}
           transition={{ duration: 0.15 }}
-          className="absolute -ml-1 -mt-1"
+          className="absolute -ml-0.5 -mt-0.5"
         >
-          <div className="w-2.5 h-2.5 rounded-full"
+          <div className="w-1.5 h-1.5 rounded-full"
                style={{ 
-                 backgroundColor: '#ff0000ff',
-                 boxShadow: '0 0 15px rgba(255, 0, 0, 1), 0 0 30px rgba(255, 0, 0, 0.8)' 
+                 backgroundColor: '#00FFFF',
+                 boxShadow: '0 0 8px rgba(0, 255, 255, 0.8), 0 0 15px rgba(0, 255, 255, 0.5)' 
                }} />
         </motion.div>
 
-        {/* Crosshair Lines */}
+        {/* Crosshair Lines - Smaller */}
         <motion.div
           animate={{
-            scale: isClicking ? 0.7 : isHovering ? 1.3 : 1,
+            scale: isClicking ? 0.7 : isHovering ? 1.2 : 1,
             rotate: isHovering ? 45 : 0,
           }}
           transition={{ duration: 0.2 }}
           className="absolute"
         >
           {/* Horizontal Line */}
-          <div className="absolute -ml-6 -mt-[1.5px] w-12 h-[3px]"
+          <div className="absolute -ml-4 -mt-[1px] w-8 h-[2px]"
                style={{ 
-                 background: 'linear-gradient(to right, transparent, #ffffffff, transparent)',
-                 boxShadow: '0 0 10px rgba(255, 255, 255, 1)' 
+                 background: 'linear-gradient(to right, transparent, #00FFFF, transparent)',
+                 boxShadow: '0 0 6px rgba(0, 255, 255, 0.8)' 
                }} />
           
           {/* Vertical Line */}
-          <div className="absolute -ml-[1.5px] -mt-6 w-[3px] h-12"
+          <div className="absolute -ml-[1px] -mt-4 w-[2px] h-8"
                style={{ 
-                 background: 'linear-gradient(to bottom, transparent, #ffffffff, transparent)',
-                 boxShadow: '0 0 10px rgba(255, 255, 255, 1)' 
+                 background: 'linear-gradient(to bottom, transparent, #00FFFF, transparent)',
+                 boxShadow: '0 0 6px rgba(0, 255, 255, 0.8)' 
                }} />
         </motion.div>
 
-        {/* Corner Brackets */}
+        {/* Corner Brackets - Smaller */}
         <motion.div
           animate={{
-            scale: isClicking ? 0.8 : isHovering ? 1.5 : 1,
-            opacity: isHovering ? 1 : 0.9,
+            scale: isClicking ? 0.8 : isHovering ? 1.3 : 1,
+            opacity: isHovering ? 1 : 0.8,
           }}
           transition={{ duration: 0.2 }}
           className="absolute"
         >
           {/* Top-Left */}
-          <div className="absolute -ml-4 -mt-4 w-3 h-3 border-t-[2.5px] border-l-[2.5px]"
+          <div className="absolute -ml-3 -mt-3 w-2 h-2 border-t-[2px] border-l-[2px]"
                style={{ 
-                 borderColor: '#44ff00ff',
-                 boxShadow: '0 0 8px rgba(9, 255, 0, 1)' 
+                 borderColor: '#00FFFF',
+                 boxShadow: '0 0 6px rgba(0, 255, 255, 0.6)' 
                }} />
           
           {/* Top-Right */}
-          <div className="absolute ml-1 -mt-4 w-3 h-3 border-t-[2.5px] border-r-[2.5px]"
+          <div className="absolute ml-1 -mt-3 w-2 h-2 border-t-[2px] border-r-[2px]"
                style={{ 
                  borderColor: '#00FFFF',
-                 boxShadow: '0 0 8px rgba(0, 255, 255, 1)' 
+                 boxShadow: '0 0 6px rgba(0, 255, 255, 0.6)' 
                }} />
           
           {/* Bottom-Left */}
-          <div className="absolute -ml-4 mt-1 w-3 h-3 border-b-[2.5px] border-l-[2.5px]"
+          <div className="absolute -ml-3 mt-1 w-2 h-2 border-b-[2px] border-l-[2px]"
                style={{ 
-                 borderColor: '#e100ffff',
-                 boxShadow: '0 0 8px rgba(255, 0, 234, 1)' 
+                 borderColor: '#00FFFF',
+                 boxShadow: '0 0 6px rgba(0, 255, 255, 0.6)' 
                }} />
           
           {/* Bottom-Right */}
-          <div className="absolute ml-1 mt-1 w-3 h-3 border-b-[2.5px] border-r-[2.5px]"
+          <div className="absolute ml-1 mt-1 w-2 h-2 border-b-[2px] border-r-[2px]"
                style={{ 
-                 borderColor: '#eeff00ff',
-                 boxShadow: '0 0 8px rgba(255, 255, 0, 1)' 
+                 borderColor: '#00FFFF',
+                 boxShadow: '0 0 6px rgba(0, 255, 255, 0.6)' 
                }} />
         </motion.div>
 
-        {/* Outer Ring (on hover) */}
+        {/* Outer Ring (on hover) - Smaller */}
         {isHovering && (
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
-            className="absolute -ml-8 -mt-8"
+            className="absolute -ml-5 -mt-5"
           >
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-              className="w-16 h-16 rounded-full border-[2.5px]"
+              className="w-10 h-10 rounded-full border-[2px]"
               style={{
                 borderColor: '#00FFFF',
                 borderStyle: 'dashed',
-                boxShadow: '0 0 20px rgba(0, 255, 255, 0.8)',
+                boxShadow: '0 0 12px rgba(0, 255, 255, 0.6)',
               }}
             />
           </motion.div>
         )}
 
-        {/* Click Ripple Effect */}
+        {/* Click Ripple Effect - Smaller */}
         {isClicking && (
           <motion.div
             initial={{ scale: 0, opacity: 1 }}
-            animate={{ scale: 3, opacity: 0 }}
+            animate={{ scale: 2.5, opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="absolute -ml-4 -mt-4 w-8 h-8 rounded-full border-[2.5px]"
+            className="absolute -ml-3 -mt-3 w-6 h-6 rounded-full border-[2px]"
             style={{
               borderColor: '#00FFFF',
-              boxShadow: '0 0 20px rgba(0, 255, 255, 1)',
+              boxShadow: '0 0 15px rgba(0, 255, 255, 0.8)',
             }}
           />
         )}

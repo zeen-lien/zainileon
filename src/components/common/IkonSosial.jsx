@@ -35,35 +35,35 @@ export default function IkonSosial({ platform, username, link }) {
     setIsHovered(false);
   };
 
-  // Platform colors dengan neon glow
+  // Platform colors dengan neon glow - MUTED/DARK VERSION
   const platformColors = {
     'Instagram': { 
-      primary: '#E4405F', 
-      secondary: '#C13584',
-      gradient: 'linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%)',
-      glow: 'rgba(228, 64, 95, 0.6)',
-      particles: '#FCAF45'
+      primary: '#B8405F',  // Darker pink
+      secondary: '#8B2B5A',  // Muted purple
+      gradient: 'linear-gradient(135deg, #5A2A54 0%, #B8405F 50%, #C88A45 100%)',
+      glow: 'rgba(184, 64, 95, 0.3)',
+      particles: '#C88A45'
     },
     'Telegram': { 
-      primary: '#0088cc', 
-      secondary: '#229ED9',
-      gradient: 'linear-gradient(135deg, #0088cc 0%, #229ED9 100%)',
-      glow: 'rgba(0, 136, 204, 0.6)',
-      particles: '#229ED9'
+      primary: '#0066A3',  // Darker blue
+      secondary: '#1A7EB3',  // Muted blue
+      gradient: 'linear-gradient(135deg, #0066A3 0%, #1A7EB3 100%)',
+      glow: 'rgba(0, 102, 163, 0.3)',
+      particles: '#1A7EB3'
     },
     'GitHub': { 
-      primary: '#ffffff', 
-      secondary: '#c9d1d9',
-      gradient: 'linear-gradient(135deg, #ffffff 0%, #8b949e 100%)',
-      glow: 'rgba(255, 255, 255, 0.6)',
-      particles: '#ffffff'
+      primary: '#B8BCC2',  // Muted white/gray
+      secondary: '#8B949E',  // Dark gray
+      gradient: 'linear-gradient(135deg, #B8BCC2 0%, #6E7681 100%)',
+      glow: 'rgba(184, 188, 194, 0.3)',
+      particles: '#B8BCC2'
     },
     'WhatsApp': { 
-      primary: '#25D366', 
-      secondary: '#128C7E',
-      gradient: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
-      glow: 'rgba(37, 211, 102, 0.6)',
-      particles: '#25D366'
+      primary: '#1EA855',  // Darker green
+      secondary: '#0E6B3E',  // Muted green
+      gradient: 'linear-gradient(135deg, #1EA855 0%, #0E6B3E 100%)',
+      glow: 'rgba(30, 168, 85, 0.3)',
+      particles: '#1EA855'
     }
   };
 
