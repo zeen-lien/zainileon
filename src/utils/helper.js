@@ -77,3 +77,18 @@ export async function copyKeClipboard(teks) {
     return false;
   }
 }
+
+/**
+ * Hitung estimasi waktu baca artikel
+ * @param {string} konten - Konten artikel (HTML atau plain text)
+ * @returns {number} - Estimasi waktu baca dalam menit
+ */
+export function hitungWaktuBaca(konten) {
+  // Hapus HTML tags
+  const teksPolos = konten.replace(/<[^>]*>/g, '');
+  // Hitung jumlah kata
+  const jumlahKata = teksPolos.trim().split(/\s+/).length;
+  // Rata-rata orang baca 200 kata per menit
+  const waktuBaca = Math.ceil(jumlahKata / 200);
+  return waktuBaca;
+}

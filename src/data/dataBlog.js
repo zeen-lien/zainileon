@@ -339,73 +339,155 @@ export const ARTIKEL_BLOG = [
     gambar: null,
   },
   {
-    id: 8,
-    slug: "tailwind-best-practices",
-    judul: "Tailwind CSS Best Practices: Clean & Maintainable Code",
-    ringkasan: "Tips untuk pake Tailwind tanpa bikin code lo jadi spaghetti. Keep it clean, keep it maintainable.",
+    id: 9,
+    slug: "react-hooks-deep-dive",
+    judul: "React Hooks Deep Dive: useState, useEffect, dan Custom Hooks",
+    ringkasan: "Pemahaman mendalam tentang React Hooks. Dari basic sampe bikin custom hooks sendiri.",
     konten: `
-      <h2>The Tailwind Way</h2>
-      <p>Tailwind powerful, tapi kalau ga hati-hati, className lo bisa jadi super panjang dan susah dibaca.</p>
+      <h2>Hooks Revolution</h2>
+      <p>React Hooks changed the game. Functional components sekarang bisa punya state & lifecycle. No more class components.</p>
       
-      <h3>1. Extract Components</h3>
-      <p>Kalau lo pake className yang sama berulang kali, extract jadi component.</p>
-      
-      <h4>Bad:</h4>
+      <h3>useState: State Management</h3>
+      <p>Hook paling basic tapi paling sering dipake:</p>
       <code>
-        &lt;button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"&gt;
+        const [count, setCount] = useState(0);
       </code>
       
-      <h4>Good:</h4>
+      <h4>Common Mistakes:</h4>
+      <ul>
+        <li><strong>Direct mutation</strong> - Jangan: count++, Harus: setCount(count + 1)</li>
+        <li><strong>Stale closure</strong> - Use functional update: setCount(prev => prev + 1)</li>
+        <li><strong>Too many states</strong> - Consider useReducer untuk complex state</li>
+      </ul>
+      
+      <h3>useEffect: Side Effects</h3>
+      <p>Untuk data fetching, subscriptions, manual DOM manipulation:</p>
       <code>
-        &lt;Button variant="primary"&gt;
+        useEffect(() => {
+          // Effect code
+          return () => {
+            // Cleanup
+          };
+        }, [dependencies]);
       </code>
       
-      <h3>2. Use @apply Sparingly</h3>
-      <p>@apply berguna, tapi jangan overuse. Utility-first is the point of Tailwind.</p>
-      
-      <h3>3. Organize Classes</h3>
-      <p>Group classes by category:</p>
+      <h4>Dependency Array Rules:</h4>
       <ol>
-        <li>Layout (flex, grid, position)</li>
-        <li>Spacing (margin, padding)</li>
-        <li>Typography (font, text)</li>
-        <li>Colors (bg, text, border)</li>
-        <li>Effects (shadow, opacity)</li>
-        <li>Transitions & animations</li>
+        <li>Empty [] = run once on mount</li>
+        <li>No array = run on every render</li>
+        <li>[dep1, dep2] = run when deps change</li>
       </ol>
       
-      <h3>4. Custom Config</h3>
-      <p>Extend tailwind.config.js dengan brand colors & spacing:</p>
+      <h3>Custom Hooks</h3>
+      <p>Extract reusable logic:</p>
       <code>
-        theme: {
-          extend: {
-            colors: {
-              'brand-primary': '#00d4ff',
-              'brand-secondary': '#a855f7'
-            }
-          }
+        function useLocalStorage(key, initialValue) {
+          const [value, setValue] = useState(() => {
+            const stored = localStorage.getItem(key);
+            return stored ? JSON.parse(stored) : initialValue;
+          });
+          
+          useEffect(() => {
+            localStorage.setItem(key, JSON.stringify(value));
+          }, [key, value]);
+          
+          return [value, setValue];
         }
       </code>
       
-      <h3>5. Responsive Design</h3>
-      <p>Mobile-first approach:</p>
-      <code>
-        className="text-sm md:text-base lg:text-lg"
-      </code>
+      <h3>Advanced Hooks</h3>
+      <ul>
+        <li><strong>useCallback</strong> - Memoize functions</li>
+        <li><strong>useMemo</strong> - Memoize expensive calculations</li>
+        <li><strong>useRef</strong> - Persist values without re-render</li>
+        <li><strong>useContext</strong> - Access context values</li>
+      </ul>
+      
+      <h3>Performance Tips</h3>
+      <ol>
+        <li>Don't optimize prematurely</li>
+        <li>Use React DevTools Profiler</li>
+        <li>Memoize only when needed</li>
+        <li>Keep components small & focused</li>
+      </ol>
+      
+      <blockquote>
+        "Premature optimization is the root of all evil." - Donald Knuth
+      </blockquote>
+    `,
+    tanggal: "2024-12-01",
+    kategori: ["Tech", "Frontend", "React", "Tutorial"],
+    gambar: null,
+  },
+  {
+    id: 10,
+    slug: "crypto-trading-basics",
+    judul: "Crypto Trading Basics: What I Wish I Knew Before Starting",
+    ringkasan: "Lessons learned dari trading crypto. Volatility tinggi = opportunity tinggi, tapi risk juga tinggi.",
+    konten: `
+      <h2>Crypto is Different</h2>
+      <p>Crypto market beda dari forex atau stocks. 24/7, volatility extreme, sentiment-driven. Lo harus adapt.</p>
+      
+      <h3>Key Differences</h3>
+      <ul>
+        <li><strong>24/7 Market</strong> - No closing bell, FOMO bisa strike kapan aja</li>
+        <li><strong>High Volatility</strong> - 10-20% swing dalam sehari itu normal</li>
+        <li><strong>Sentiment Driven</strong> - News & tweets bisa move market drastis</li>
+        <li><strong>Lower Liquidity</strong> - Especially altcoins, slippage bisa gede</li>
+      </ul>
+      
+      <h3>Major Cryptocurrencies</h3>
+      
+      <h4>Bitcoin (BTC)</h4>
+      <p>King of crypto. Market cap terbesar, paling liquid. Good for beginners.</p>
+      
+      <h4>Ethereum (ETH)</h4>
+      <p>Smart contract platform. More volatile than BTC, more opportunity.</p>
+      
+      <h4>Altcoins</h4>
+      <p>High risk, high reward. Do your research, many are scams.</p>
+      
+      <h3>Trading Strategies</h3>
+      
+      <h4>1. Swing Trading</h4>
+      <p>Hold 2-7 days. Ride the waves. Good for volatile market.</p>
+      
+      <h4>2. Day Trading</h4>
+      <p>In & out same day. Need to watch charts constantly.</p>
+      
+      <h4>3. HODLing</h4>
+      <p>Long-term hold. Believe in the project. Ignore short-term noise.</p>
+      
+      <h3>Risk Management in Crypto</h3>
+      <ol>
+        <li><strong>Position Size</strong> - Max 2-3% per trade (volatility tinggi)</li>
+        <li><strong>Stop Loss</strong> - Wider than forex (20-30% common)</li>
+        <li><strong>Diversification</strong> - Don't put all in one coin</li>
+        <li><strong>Take Profit</strong> - Secure gains, market bisa reverse cepat</li>
+      </ol>
+      
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Chasing pumps - FOMO is real</li>
+        <li>Holding through dumps - Know when to cut loss</li>
+        <li>Leverage trading - Liquidation is brutal</li>
+        <li>Following influencers blindly - DYOR always</li>
+      </ul>
       
       <h3>Tools Gw Pake</h3>
       <ul>
-        <li><strong>Tailwind CSS IntelliSense</strong> - VSCode extension</li>
-        <li><strong>Prettier Plugin</strong> - Auto-sort classes</li>
-        <li><strong>clsx/classnames</strong> - Conditional classes</li>
+        <li><strong>TradingView</strong> - Charting & analysis</li>
+        <li><strong>CoinGecko</strong> - Market data & research</li>
+        <li><strong>Binance</strong> - Main exchange</li>
+        <li><strong>Ledger</strong> - Hardware wallet untuk long-term hold</li>
       </ul>
       
       <blockquote>
-        "The best code is no code at all. The second best is code that's easy to delete." - Programming Wisdom
+        "In crypto, you either learn fast or lose fast. Choose wisely."
       </blockquote>
     `,
-    tanggal: "2024-12-03",
-    kategori: ["Tech", "Frontend", "Tutorial"],
+    tanggal: "2024-11-28",
+    kategori: ["Trading", "Crypto", "Tutorial"],
     gambar: null,
   },
 ];

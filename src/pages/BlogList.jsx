@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ARTIKEL_BLOG, getAllKategori } from '../data/dataBlog';
-import { formatTanggal } from '../utils/helper';
+import { formatTanggal, hitungWaktuBaca } from '../utils/helper';
 
 /**
  * Komponen BlogList - Halaman daftar artikel blog
@@ -105,7 +105,7 @@ export default function BlogList() {
               {/* Content */}
               <div className="p-6">
                 {/* Kategori & Tanggal */}
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center flex-wrap gap-3 mb-3">
                   <div className="flex gap-2">
                     {artikel.kategori.map((kat) => (
                       <span 
@@ -116,6 +116,12 @@ export default function BlogList() {
                       </span>
                     ))}
                   </div>
+                  <span className="text-xs text-teks-sekunder flex items-center gap-1">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {hitungWaktuBaca(artikel.konten)} min read
+                  </span>
                   <span className="text-xs text-teks-sekunder">
                     {formatTanggal(artikel.tanggal)}
                   </span>

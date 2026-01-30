@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Navigasi from './components/layout/Navigasi';
 import Footer from './components/layout/Footer';
 import SeksiHero from './components/sections/SeksiHero';
@@ -13,8 +13,10 @@ import Portfolio from './pages/Portfolio';
 import BlogList from './pages/BlogList';
 import BlogDetail from './pages/BlogDetail';
 import Laboratory from './pages/Laboratory';
+import NotFound from './pages/NotFound';
 import LoadingScreen from './components/common/LoadingScreen';
 import CustomCursor from './components/common/CustomCursor';
+import ScrollProgress from './components/common/ScrollProgress';
 import PageTransition from './components/common/PageTransition';
 
 /**
@@ -31,6 +33,7 @@ function App() {
           <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />
         ) : (
           <>
+            <ScrollProgress />
             <CustomCursor />
             <AppContent />
           </>
@@ -87,6 +90,13 @@ function AppContent() {
 
           {/* Laboratory (Private) */}
           <Route path="/laboratory" element={<Laboratory />} />
+
+          {/* 404 Not Found */}
+          <Route path="*" element={
+            <PageTransition>
+              <NotFound />
+            </PageTransition>
+          } />
         </Routes>
       </AnimatePresence>
 

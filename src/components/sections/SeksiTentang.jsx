@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useAnimasiScroll } from '../../hooks/useAnimasiScroll';
+import AnimatedCounter from '../common/AnimatedCounter';
 
 /**
  * Komponen SeksiTentang - About section
@@ -125,6 +126,70 @@ export default function SeksiTentang() {
               </ul>
             </div>
           </div>
+
+          {/* Animated Statistics */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={adalahTerlihat ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16"
+          >
+            {/* Years Experience */}
+            <div className="text-center p-6 rounded-xl bg-transparent border-2 border-latar-tersier hover:border-aksen-primer transition-all duration-300">
+              <div className="text-4xl md:text-5xl font-bold mb-2"
+                   style={{ 
+                     background: 'linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)',
+                     WebkitBackgroundClip: 'text',
+                     WebkitTextFillColor: 'transparent',
+                     backgroundClip: 'text',
+                   }}>
+                <AnimatedCounter to={3} suffix="+" duration={2.5} />
+              </div>
+              <div className="text-sm text-teks-sekunder">Years Experience</div>
+            </div>
+
+            {/* Projects Completed */}
+            <div className="text-center p-6 rounded-xl bg-transparent border-2 border-latar-tersier hover:border-aksen-primer transition-all duration-300">
+              <div className="text-4xl md:text-5xl font-bold mb-2"
+                   style={{ 
+                     background: 'linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)',
+                     WebkitBackgroundClip: 'text',
+                     WebkitTextFillColor: 'transparent',
+                     backgroundClip: 'text',
+                   }}>
+                <AnimatedCounter to={15} suffix="+" duration={2.5} />
+              </div>
+              <div className="text-sm text-teks-sekunder">Projects Done</div>
+            </div>
+
+            {/* Trading Experience */}
+            <div className="text-center p-6 rounded-xl bg-transparent border-2 border-latar-tersier hover:border-aksen-primer transition-all duration-300">
+              <div className="text-4xl md:text-5xl font-bold mb-2"
+                   style={{ 
+                     background: 'linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)',
+                     WebkitBackgroundClip: 'text',
+                     WebkitTextFillColor: 'transparent',
+                     backgroundClip: 'text',
+                   }}>
+                <AnimatedCounter to={2} suffix="+" duration={2.5} />
+              </div>
+              <div className="text-sm text-teks-sekunder">Years Trading</div>
+            </div>
+
+            {/* Success Rate */}
+            <div className="text-center p-6 rounded-xl bg-transparent border-2 border-latar-tersier hover:border-aksen-primer transition-all duration-300">
+              <div className="text-4xl md:text-5xl font-bold mb-2"
+                   style={{ 
+                     background: 'linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)',
+                     WebkitBackgroundClip: 'text',
+                     WebkitTextFillColor: 'transparent',
+                     backgroundClip: 'text',
+                   }}>
+                <AnimatedCounter to={95} suffix="%" duration={2.5} />
+              </div>
+              <div className="text-sm text-teks-sekunder">Client Satisfaction</div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

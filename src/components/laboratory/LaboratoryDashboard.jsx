@@ -3,6 +3,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TradingJournal from './TradingJournal';
 import Notes from './Notes';
+import PositionSizeCalculator from './PositionSizeCalculator';
+import RiskRewardCalculator from './RiskRewardCalculator';
+import PipCalculator from './PipCalculator';
+import ProfitCalculator from './ProfitCalculator';
 
 /**
  * Komponen LaboratoryDashboard - Main dashboard setelah login
@@ -272,8 +276,11 @@ function OverviewContent() {
  * Tools Content
  */
 function ToolsContent() {
+  const [activeTool, setActiveTool] = useState(null);
+
   const tools = [
     {
+      id: 'position-size',
       name: 'Position Size Calculator',
       description: 'Calculate optimal position size based on risk',
       icon: (
@@ -281,9 +288,10 @@ function ToolsContent() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
         </svg>
       ),
-      status: 'Coming Soon'
+      component: PositionSizeCalculator,
     },
     {
+      id: 'risk-reward',
       name: 'Risk/Reward Calculator',
       description: 'Calculate R:R ratio for your trades',
       icon: (
@@ -291,9 +299,10 @@ function ToolsContent() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
         </svg>
       ),
-      status: 'Coming Soon'
+      component: RiskRewardCalculator,
     },
     {
+      id: 'pip',
       name: 'Pip Calculator',
       description: 'Convert pips to currency value',
       icon: (
@@ -301,9 +310,10 @@ function ToolsContent() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      status: 'Coming Soon'
+      component: PipCalculator,
     },
     {
+      id: 'profit',
       name: 'Profit Calculator',
       description: 'Calculate potential profit/loss',
       icon: (
@@ -311,22 +321,43 @@ function ToolsContent() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
         </svg>
       ),
-      status: 'Coming Soon'
+      component: ProfitCalculator,
     },
   ];
+
+  if (activeTool) {
+    const tool = tools.find(t => t.id === activeTool);
+    const ToolComponent = tool.component;
+    
+    return (
+      <div>
+        <button
+          onClick={() => setActiveTool(null)}
+          className="mb-6 flex items-center gap-2 text-aksen-primer hover:text-aksen-primer/80 transition-colors"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Tools
+        </button>
+        <ToolComponent />
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {tools.map((tool, index) => (
-        <motion.div
-          key={tool.name}
+        <motion.button
+          key={tool.id}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: index * 0.1 }}
+          onClick={() => setActiveTool(tool.id)}
           className="
             bg-latar-sekunder border-2 border-latar-tersier
-            rounded-xl p-6
-            hover:border-aksen-primer/30
+            rounded-xl p-6 text-left
+            hover:border-aksen-primer/50 hover:bg-latar-tersier/30
             transition-all duration-300
           "
         >
@@ -340,14 +371,16 @@ function ToolsContent() {
                 {tool.description}
               </p>
               <span className="
-                inline-block px-3 py-1 rounded-full text-xs
-                bg-yellow-400/10 text-yellow-400 border border-yellow-400/30
+                inline-flex items-center gap-2 text-aksen-primer text-sm font-medium
               ">
-                {tool.status}
+                Open Calculator
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
               </span>
             </div>
           </div>
-        </motion.div>
+        </motion.button>
       ))}
     </div>
   );
