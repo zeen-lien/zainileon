@@ -318,7 +318,7 @@ export default function LaboratoryLogin({ onLoginSuccess }) {
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="hidden lg:flex lg:w-1/2 flex-col justify-center px-16 xl:px-24"
+          className="hidden lg:flex lg:w-1/2 flex-col justify-center px-12 xl:px-20 2xl:px-24"
         >
           {/* Logo/Title */}
           <div className="mb-12">
@@ -428,26 +428,26 @@ export default function LaboratoryLogin({ onLoginSuccess }) {
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12"
+          className="w-full lg:w-1/2 flex items-center justify-center px-4 sm:px-6 md:px-8 py-8 sm:py-12"
         >
           <div className="w-full max-w-md">
             
             {/* Mobile Logo */}
-            <div className="lg:hidden text-center mb-12">
+            <div className="lg:hidden text-center mb-8 sm:mb-12">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.6 }}
-                className="inline-block mb-6"
+                className="inline-block mb-4 sm:mb-6"
               >
-                <svg className="w-20 h-20 text-cyan-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-16 h-16 sm:w-20 sm:h-20 text-cyan-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </motion.div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-2">
+              <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-2">
                 LABORATORY
               </h1>
-              <p className="text-gray-400">Secure Access Required</p>
+              <p className="text-gray-400 text-sm sm:text-base">Secure Access Required</p>
             </div>
 
             {/* Login Card */}
@@ -461,12 +461,12 @@ export default function LaboratoryLogin({ onLoginSuccess }) {
               {/* Card Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5 rounded-2xl blur-xl" />
               
-              <div className="relative bg-black/40 backdrop-blur-xl border-2 border-gray-800 rounded-2xl p-8 shadow-[0_0_50px_rgba(0,212,255,0.1)] hover:border-cyan-500/50 transition-all duration-500">
+              <div className="relative bg-black/40 backdrop-blur-xl border-2 border-gray-800 rounded-2xl p-6 sm:p-8 shadow-[0_0_50px_rgba(0,212,255,0.1)] hover:border-cyan-500/50 transition-all duration-500">
                 
                 {/* Form Header */}
-                <div className="mb-8">
-                  <h2 className="text-2xl font-bold text-white mb-2">Authentication</h2>
-                  <p className="text-gray-400">Enter your credentials to access the laboratory</p>
+                <div className="mb-6 sm:mb-8">
+                  <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">Authentication</h2>
+                  <p className="text-gray-400 text-sm sm:text-base">Enter your credentials to access the laboratory</p>
                 </div>
 
                 {/* Error Message */}
@@ -490,9 +490,9 @@ export default function LaboratoryLogin({ onLoginSuccess }) {
                 </AnimatePresence>
 
                 {/* Password Input */}
-                <div className="mb-8">
-                  <label htmlFor="password" className="block text-white font-semibold mb-3 flex items-center gap-2">
-                    <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="mb-6 sm:mb-8">
+                  <label htmlFor="password" className="block text-white font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
                     </svg>
                     Password
@@ -505,7 +505,7 @@ export default function LaboratoryLogin({ onLoginSuccess }) {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
-                      className="w-full px-4 py-4 pr-14 rounded-xl bg-gray-900/50 border-2 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300"
+                      className="w-full px-4 py-3 sm:py-4 pr-12 sm:pr-14 rounded-xl bg-gray-900/50 border-2 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300 text-sm sm:text-base"
                       disabled={isLoading}
                       autoFocus
                     />
@@ -514,7 +514,7 @@ export default function LaboratoryLogin({ onLoginSuccess }) {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-lg text-gray-600 hover:text-red-500 hover:bg-red-500/10 transition-all duration-300 group hover:shadow-[0_0_15px_rgba(239,68,68,0.3)]"
+                      className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 p-2 rounded-lg text-gray-600 hover:text-red-500 hover:bg-red-500/10 transition-all duration-300 group hover:shadow-[0_0_15px_rgba(239,68,68,0.3)] touch-manipulation"
                       title={showPassword ? "Hide password" : "Show password"}
                     >
                       {showPassword ? (
@@ -524,14 +524,14 @@ export default function LaboratoryLogin({ onLoginSuccess }) {
                           transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
                           className="relative"
                         >
-                          <svg className="w-6 h-6 text-cyan-400 group-hover:text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400 group-hover:text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                           </svg>
                           <motion.div
                             animate={{ opacity: [0, 1, 0], x: [-2, 2, -2] }}
                             transition={{ duration: 0.3, repeat: Infinity, repeatDelay: 2 }}
-                            className="absolute inset-0 w-6 h-6"
+                            className="absolute inset-0 w-5 h-5 sm:w-6 sm:h-6"
                           >
                             <div className="absolute top-1 left-0 w-full h-0.5 bg-cyan-400/50" />
                             <div className="absolute bottom-1 left-0 w-full h-0.5 bg-cyan-400/50" />
@@ -544,7 +544,7 @@ export default function LaboratoryLogin({ onLoginSuccess }) {
                           transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
                         >
                           <motion.svg
-                            className="w-6 h-6 text-gray-600 group-hover:text-red-500"
+                            className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 group-hover:text-red-500"
                             fill="currentColor"
                             viewBox="0 0 24 24"
                             animate={{ rotate: [0, -5, 5, -5, 0] }}
@@ -563,23 +563,23 @@ export default function LaboratoryLogin({ onLoginSuccess }) {
                 <button
                   type="submit"
                   disabled={isLoading || !password}
-                  className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-lg font-bold hover:from-cyan-400 hover:to-blue-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(0,212,255,0.3)] hover:shadow-[0_0_50px_rgba(0,212,255,0.5)] hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full px-6 py-3 sm:py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-base sm:text-lg font-bold hover:from-cyan-400 hover:to-blue-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 shadow-[0_0_30px_rgba(0,212,255,0.3)] hover:shadow-[0_0_50px_rgba(0,212,255,0.5)] hover:scale-[1.02] active:scale-[0.98] touch-manipulation"
                 >
                   {isLoading ? (
                     <>
-                      <svg className="animate-spin h-6 w-6" fill="none" viewBox="0 0 24 24">
+                      <svg className="animate-spin h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                       </svg>
-                      <span>VERIFYING...</span>
+                      <span className="text-sm sm:text-base">VERIFYING...</span>
                     </>
                   ) : (
                     <>
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
                       </svg>
-                      <span>ACCESS LABORATORY</span>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span className="text-sm sm:text-base">ACCESS LABORATORY</span>
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>
                     </>
@@ -587,7 +587,7 @@ export default function LaboratoryLogin({ onLoginSuccess }) {
                 </button>
 
                 {/* Footer Info */}
-                <p className="mt-6 text-center text-gray-500 text-sm">
+                <p className="mt-4 sm:mt-6 text-center text-gray-500 text-xs sm:text-sm">
                   Protected area. Unauthorized access is prohibited.
                 </p>
               </div>
